@@ -3,12 +3,6 @@ from datetime import datetime
 import random
 import os
 
-# def check_is_digit(value):
-#     if isinstance(value, (int, float)):
-#         return True
-#     else:
-#         return False
-
 
 def input_alpha_string(question_text):
     """
@@ -23,7 +17,7 @@ def input_alpha_string(question_text):
     """
 
     while True:
-        alpha_string = input(question_text)
+        alpha_string = input(question_text).strip()
         if alpha_string.isalpha():
             break
         else:
@@ -247,28 +241,97 @@ def multiplication_table():
     10. En ”tabb”ska läggas in efter varje nummer. Försöka att ställa upp det så
     det blir relativt läsbart.
     """
-    for i in range(1,2):
+    for i in range(1, 2):
         for j in range(1, 11):
             print(f"{i} * {j} = {1*j}")
 
-def list_sort():
+
+def bubble_sort_integers(integer_list):
+    """
+    Bubble sorts an integer list into ascending order.
+
+    Parameters:
+        integer_list (list): A list of integers.
+
+    Returns:
+        integer_list (list): A list of integers.
+    """
+
+    n = len(integer_list)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if integer_list[j] > integer_list[j + 1]:
+                integer_list[j], integer_list[j + 1] = integer_list[j + 1], integer_list[j]
+
+    return integer_list
+
+def integer_list_sort():
     """
     11. Funktion som skapar två arrayer. Den första fylls med slumpmässiga tal.
     Den andra fylls med talen från den första i stigande ordning.
     Array.Sort() får EJ användas.
     """
 
-    list_to_be_sorted = [random.randint(1, 100) for i in range(11)]
-    print(f"Unsorted list:\t{list_to_be_sorted}")
+    random_integer_list = [random.randint(1, 100) for i in range(11)]
+    print(f"Unsorted list:\t{random_integer_list}")
 
-    # Bubble
-    n = len(list_to_be_sorted)
-    for i in range(n):
-        for j in range(0, n-i-1):
-            if list_to_be_sorted[j] > list_to_be_sorted[j + 1]:
-                list_to_be_sorted[j], list_to_be_sorted[j + 1] = list_to_be_sorted[j + 1], list_to_be_sorted[j]
+    sorted_integer_list = bubble_sort_integers(random_integer_list)
+    print(f"Sorted list:\t{sorted_integer_list}")
 
-    print(f"Sorted list:\t{list_to_be_sorted}")
+def palindrome():
+    """
+    12. Funktion som tar en input från användaren och kontrollerar ifall det är
+    en palindrom (alltså samma ord från båda håll, såsom Anna eller radar).
+    """
+
+    user_input_raw = input_alpha_string("Enter a word: ")
+    user_input_sanitised = user_input_raw.lower()
+
+    if user_input_sanitised == user_input_sanitised[::-1]:
+        is_palindrome = True
+    else:
+        is_palindrome = False
+
+    print(f"{user_input_raw} is a palindrome: {is_palindrome}")
+
+
+def intervening_integers():
+    """
+    13. Funktion som tar två inputs från användaren och skriver sedan ut alla
+    siffror som är mellan de två inputsen.
+    """
+
+    integer1 = input_integer("Enter first integer: ")
+    integer2 = input_integer("Enter second integer: ")
+
+    intervening_integer_list = []
+
+    integer1 += 1
+    while integer1 < integer2:
+        intervening_integer_list.append(integer1)
+        integer1 += 1
+
+    print(f"Start integer: {integer1}")
+    print(f"Intervening integers: {intervening_integer_list}")
+    print(f"End integer: {integer2}")
+
+def sort_into_odd_and_even_integers():
+    """
+    14. Funktion där användaren skickar in ett antal värden (komma-separerade
+    siffror) som sedan sorteras och skrivs ut efter udda och jämna värden.
+    """
+    while True:
+        try:
+            user_input = input("Enter a list of comma separated integers: ")
+            # print(user_input)
+            split_user_input = user_input.split(",")
+            number_list = [int(i.strip()) for i in split_user_input]
+            break
+        except ValueError:
+            print("Invalid data! Please enter comma separated integers e.g. 33, 5, 42, 99, 1746")
+            continue
+    print(number_list)
+    print(bubble_sort_integers(number_list))
 
 if __name__ == "__main__":
     working_dir = os.path.dirname(os.path.abspath(__file__))
@@ -285,4 +348,7 @@ if __name__ == "__main__":
     # decimal_calculations()
     # decimal_calculations_using_python_modules()
     # multiplication_table()
-    list_sort()
+    integer_list_sort()
+    # palindrome()
+    # intervening_integers()
+    # sort_into_odd_and_even_integers() # In Progress
