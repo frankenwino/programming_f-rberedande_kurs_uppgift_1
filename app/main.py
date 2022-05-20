@@ -3,7 +3,6 @@ from datetime import datetime
 import random
 import os
 
-
 def input_alpha_string(question_text):
     """
     Asks for user input. Checks that the input is an alphabetic string. Returns
@@ -148,7 +147,11 @@ def number_guesser():
         if user_guess == random_number:
             break
         else:
-            print("Try again!")
+            if user_guess < random_number:
+                message = "Too low!"
+            else:
+                message = "Too high!"
+            print(f"{message} Try again!")
             continue
 
     if guesses > 1:
@@ -265,6 +268,7 @@ def bubble_sort_integers(integer_list):
 
     return integer_list
 
+
 def integer_list_sort():
     """
     11. Funktion som skapar två arrayer. Den första fylls med slumpmässiga tal.
@@ -273,10 +277,12 @@ def integer_list_sort():
     """
 
     random_integer_list = [random.randint(1, 100) for i in range(11)]
-    print(f"Unsorted list:\t{random_integer_list}")
+    random_integer_list_copy = random_integer_list.copy()
+    sorted_integer_list = bubble_sort_integers(random_integer_list_copy)
 
-    sorted_integer_list = bubble_sort_integers(random_integer_list)
+    print(f"Unsorted list:\t{random_integer_list}")
     print(f"Sorted list:\t{sorted_integer_list}")
+
 
 def palindrome():
     """
@@ -315,40 +321,185 @@ def intervening_integers():
     print(f"Intervening integers: {intervening_integer_list}")
     print(f"End integer: {integer2}")
 
-def sort_into_odd_and_even_integers():
+
+def convert_user_integer_input_string_to_list(user_input):
+    """
+    Converts a comma separated integer string into a list of actual integers
+    e.g. "1, 2 , 3, 4" -> [1, 2, 3, 4]
+
+    Parameters:
+        user_input (str): A string of comma separated integers
+
+    Returns:
+        integer_list (int): A list of integers
+    """
+
+    split_user_input = user_input.split(",")
+    integer_list = [int(i.strip()) for i in split_user_input]
+
+    return integer_list
+
+
+def sort_user_integer_input_string_into_odd_and_even_integers():
     """
     14. Funktion där användaren skickar in ett antal värden (komma-separerade
     siffror) som sedan sorteras och skrivs ut efter udda och jämna värden.
     """
+
     while True:
         try:
             user_input = input("Enter a list of comma separated integers: ")
-            # print(user_input)
-            split_user_input = user_input.split(",")
-            number_list = [int(i.strip()) for i in split_user_input]
+            user_integer_list = convert_user_integer_input_string_to_list(user_input)
             break
         except ValueError:
-            print("Invalid data! Please enter comma separated integers e.g. 33, 5, 42, 99, 1746")
+            print("Invalid data! Please enter comma separated integers e.g. 33, 5, 42, 99, -1746")
             continue
-    print(number_list)
-    print(bubble_sort_integers(number_list))
+
+    odd_list = []
+    even_list = []
+
+    user_integer_list_copy = user_integer_list.copy()
+    sorted_integer_list = bubble_sort_integers(user_integer_list_copy)
+
+    for i in sorted_integer_list:
+        if (i % 2) == 0:
+            even_list.append(i)
+        else:
+            odd_list.append(i)
+
+    print(f"Orig:\t{user_integer_list}")
+    print(f"Sorted:\t{sorted_integer_list}")
+    print(f"Even:\t{even_list}")
+    print(f"Odd:\t{odd_list}")
+
+
+def add_user_integer_input_string_together():
+    """
+    15. Funktion där användaren skriver in ett antal värden(komma-separerade
+    siffor) som sedan adderas och skrivs ut.
+    """
+
+    while True:
+        try:
+            user_input = input("Enter a list of comma separated integers: ")
+            user_integer_list = convert_user_integer_input_string_to_list(user_input)
+            break
+        except ValueError:
+            print("Invalid data! Please enter comma separated integers e.g. 33, 5, 42, 99, -1746")
+            continue
+
+    print(f"Orig:\t{user_integer_list}")
+    print(f"Add:\t {sum(user_integer_list)}")
+
+
+class Character(object):
+    """
+    A class to represent a character.
+
+    ...
+
+    Attributes
+    ----------
+    name : str
+        first name of the person
+    health : int
+        the character's health stat
+    strength : int
+        the character's strength stat
+    luck : int
+        the character's health luck
+
+    Methods
+    -------
+    info(additional=""):
+        Prints the person's name and age.
+    """
+
+    def __init__(self, name, health, strength, luck):
+        self.name = name
+        self.health = health
+        self.strength = strength
+        self.luck = luck
+
+    def update_health_score(self, value):
+        self.health += value
+
+    def update_strength_score(self, value):
+        self.strength += value
+
+    def update_luck_score(self, value):
+        self.luck += value
+
+
+class Hero(Character):
+    """docstring for ."""
+
+    def __init__(self, name, health, strength, luck):
+        Character.__init__(self, name, health, strength, luck)
+        self.character_type = "Hero"
+
+
+class Villain(Character):
+    """docstring for ."""
+
+    def __init__(self, name, health, strength, luck):
+        Character.__init__(self, name, health, strength, luck)
+        self.character_type = "Villain"
+
+
+def character_generator():
+    """
+    16. Funktion där användaren ska ange namnet på sin karaktär och namnet på en
+    motståndare. Funktionenskall sedan själv lägga till slumpmässiga värden för
+    Hälsa, Styrka och Tur, som sparas i en instans av en klass.
+    """
+
+    hero_name = "Andrew"  # input("Please enter the name of the hero: ")
+    villain_name = "Werdna"  # input("Please enter the name of the villain")
+
+    player1 = Hero(
+        name=hero_name,
+        health=random.randint(1, 10),
+        strength=random.randint(1, 10),
+        luck=random.randint(1, 10)
+        )
+    player2 = Villain(
+        name=villain_name,
+        health=random.randint(1, 10),
+        strength=random.randint(1, 10),
+        luck=random.randint(1, 10)
+        )
+
+    player_list = [player1, player2]
+
+    for player in player_list:
+        print(f"Name: {player.name}")
+        print(f"Type: {player.character_type}")
+        print(f"Starting Health: {player.health}")
+        print(f"Starting Strength: {player.strength}")
+        print(f"Starting Luck: {player.luck}")
+        print()
+
 
 if __name__ == "__main__":
+
     working_dir = os.path.dirname(os.path.abspath(__file__))
     text_file = os.path.join(working_dir, "text_file.txt")
 
-    # hello_world()
-    # input_from_user()
-    # change_text_colour() # TODO
-    # todays_date()
-    # print_largest()
-    # number_guesser()
-    # write_text_to_file(text_file)
-    # read_text_from_file(text_file)
-    # decimal_calculations()
-    # decimal_calculations_using_python_modules()
-    # multiplication_table()
-    integer_list_sort()
-    # palindrome()
-    # intervening_integers()
-    # sort_into_odd_and_even_integers() # In Progress
+    # hello_world()  # 1
+    # input_from_user()  # 2
+    # change_text_colour() # 3 TODO
+    # todays_date()  # 4
+    # print_largest()  # 5
+    # number_guesser()  # 6
+    # write_text_to_file(text_file)  # 7
+    # read_text_from_file(text_file)  # 8
+    # decimal_calculations()  # 9
+    # decimal_calculations_using_python_modules()  # 9
+    # multiplication_table()  # 10
+    # integer_list_sort()  # 11
+    # palindrome()  # 12
+    # intervening_integers()  # 13
+    # sort_user_integer_input_string_into_odd_and_even_integers()  # 14
+    # add_user_integer_input_string_together()  # 15
+    # character_generator()  # 16
