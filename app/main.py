@@ -103,15 +103,21 @@ def input_from_user():
 
 def change_text_colour():
     """
-    TO DO
     3. Funktion som ändrar färgen på texten i konsolen (och ändrar tillbaka om
     man använder funktionen igen).
+
+    Credit: https://gist.github.com/Prakasaka/219fe5695beeb4d6311583e79933a009
     """
 
     clear_screen()
     print(f"{change_text_colour.__doc__.strip()}\n")
 
-    print("TO DO!")
+    # print(ansi_code_list[0])
+
+    print(f"{ansi_code_list[0]}Colour change!")
+    ansi_code_list.reverse()
+    # print(ansi_code_list[0])
+
     return_to_menu()
 
 
@@ -601,13 +607,21 @@ def exit():
     sys.exit(0)
 
 
+# Variables for write_text_to_file() and read_text_from_file()
 working_dir = os.path.dirname(os.path.abspath(__file__))
 text_file = os.path.join(working_dir, "text_file.txt")
+
+#  Variables for change_text_colour()
+red_text_ansi_code = "\033[31m"
+reset_text_colour_ansi_code = "\033[0m"
+ansi_code_list = [red_text_ansi_code, reset_text_colour_ansi_code]
+
+# Menu variables
 valid_menu_options = [x for x in range(0,17)]
 menu_options = {
     1: 'hello_world()',
     2: 'input_from_user()',
-    3: 'change_text_colour() TODO',
+    3: 'change_text_colour()',
     4: 'todays_date()',
     5: 'print_largest()',
     6: 'number_guesser()',
@@ -673,21 +687,3 @@ if __name__ == "__main__":
         except ValueError:
             input(menu_error_message)
             continue
-
-    # hello_world()  # 1
-    # input_from_user()  # 2
-    # change_text_colour() # 3 TODO
-    # todays_date()  # 4
-    # print_largest()  # 5
-    # number_guesser()  # 6
-    # write_text_to_file(text_file)  # 7
-    # read_text_from_file(text_file)  # 8
-    # decimal_calculations()  # 9
-    # decimal_calculations_using_python_modules()  # 9
-    # multiplication_table()  # 10
-    # integer_list_sort()  # 11
-    # palindrome()  # 12
-    # intervening_integers()  # 13
-    # sort_user_integer_input_string_into_odd_and_even_integers()  # 14
-    # add_user_integer_input_string_together()  # 15
-    # character_generator()  # 16
