@@ -625,6 +625,7 @@ menu_options = {
 }
 
 if __name__ == "__main__":
+    menu_error_message = "Error! Please enter a value between 0-16. Press Enter to continue. "
     while True:
         try:
             print_menu()
@@ -667,10 +668,10 @@ if __name__ == "__main__":
                 else:
                     continue
             else:
-                input("Error! Please enter a value between 0-16. Press Enter to continue. ")
+                input(menu_error_message)
                 continue
         except ValueError:
-            input("Error! Please enter a value between 0-16. Press Enter to continue. ")
+            input(menu_error_message)
             continue
 
     # hello_world()  # 1
