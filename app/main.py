@@ -87,8 +87,8 @@ def hello_world():
 
 def input_from_user():
     """
-    2. Funktion som tar in input från användaren (Förnamn, Efternamn, Ålder) och
-    sedan skriver ut dessa i konsolen.
+    2. Funktion som tar in input från användaren (Förnamn, Efternamn, Ålder)
+    och sedan skriver ut dessa i konsolen.
     """
     clear_screen()
     print(f"{input_from_user.__doc__.strip()}\n")
@@ -428,14 +428,14 @@ def convert_user_integer_input_string_to_list(user_input):
     return integer_list
 
 
-def sort_user_integer_input_string_into_odd_and_even_integers():
+def sort_user_integer_input_into_odd_and_even_integers():
     """
     14. Funktion där användaren skickar in ett antal värden (komma-separerade
     siffror) som sedan sorteras och skrivs ut efter udda och jämna värden.
     """
 
     clear_screen()
-    print(f"{sort_user_integer_input_string_into_odd_and_even_integers.__doc__.strip()}\n")
+    print(f"{sort_user_integer_input_into_odd_and_even_integers.__doc__.strip()}\n")
 
     while True:
         try:
@@ -466,14 +466,14 @@ def sort_user_integer_input_string_into_odd_and_even_integers():
     return_to_menu()
 
 
-def add_user_integer_input_string_together():
+def add_user_integer_input_together():
     """
     15. Funktion där användaren skriver in ett antal värden(komma-separerade
     siffor) som sedan adderas och skrivs ut.
     """
 
     clear_screen()
-    print(f"{add_user_integer_input_string_together.__doc__.strip()}\n")
+    print(f"{add_user_integer_input_together.__doc__.strip()}\n")
 
     while True:
         try:
@@ -632,8 +632,8 @@ menu_options = {
     11: 'integer_list_sort()',
     12: 'palindrome()',
     13: 'intervening_integers()',
-    14: 'sort_user_integer_input_string_into_odd_and_even_integers()',
-    15: 'add_user_integer_input_string_together()',
+    14: 'sort_user_integer_input_into_odd_and_even_integers()',
+    15: 'add_user_integer_input_together()',
     16: 'character_generator()',
     0: 'Exit',
 }
@@ -672,9 +672,9 @@ if __name__ == "__main__":
                 elif option == 13:
                     intervening_integers()
                 elif option == 14:
-                    sort_user_integer_input_string_into_odd_and_even_integers()
+                    sort_user_integer_input_into_odd_and_even_integers()
                 elif option == 15:
-                    add_user_integer_input_string_together()
+                    add_user_integer_input_together()
                 elif option == 16:
                     character_generator()
                 elif option == 0:
