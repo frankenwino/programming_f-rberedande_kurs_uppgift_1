@@ -131,3 +131,4 @@ dmypy.json
 # Misc
 .DS_Store
 app/text_file.txt
+/.vs
