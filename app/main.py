@@ -4,6 +4,7 @@ import random
 import sys
 from datetime import datetime
 
+
 def input_alpha_string(question_text):
     """
     Asks for user input. Checks that the input is an alphabetic string. Returns
@@ -77,6 +78,7 @@ def hello_world():
     """
     1. Funktion som skriver ut ”Hello World” i konsolen.
     """
+
     clear_screen()
     print(f"{hello_world.__doc__.strip()}\n")
 
@@ -90,6 +92,7 @@ def input_from_user():
     2. Funktion som tar in input från användaren (Förnamn, Efternamn, Ålder)
     och sedan skriver ut dessa i konsolen.
     """
+
     clear_screen()
     print(f"{input_from_user.__doc__.strip()}\n")
 
@@ -112,11 +115,8 @@ def change_text_colour():
     clear_screen()
     print(f"{change_text_colour.__doc__.strip()}\n")
 
-    # print(ansi_code_list[0])
-
     print(f"{ansi_code_list[0]}Colour change!")
     ansi_code_list.reverse()
-    # print(ansi_code_list[0])
 
     return_to_menu()
 
@@ -157,7 +157,7 @@ def print_largest():
     print(f"Two integers were entered: {integer1} and {integer2}")
 
     if largest is None:
-        print(f"The integers are the same.")
+        print("The integers are the same.")
     else:
         print(f"The largest integer is {largest}")
 
@@ -266,7 +266,6 @@ def decimal_calculations():
     power_of_two = decimal ** 2
     power_of_ten = decimal ** 10
 
-    # print(f"Decimal: {decimal}")
     print(f"Square root of {decimal}: {decimal_square_root}")
     print(f"{decimal} raised to the power of 2: {power_of_two}")
     print(f"{decimal} raised to the power of 10: {power_of_ten}")
@@ -386,7 +385,6 @@ def intervening_integers():
     clear_screen()
     print(f"{intervening_integers.__doc__.strip()}\n")
 
-
     integer1 = input_integer("Enter first integer: ")
     integer2 = input_integer("Enter second integer: ")
     intervening_integer_list = []
@@ -497,7 +495,7 @@ class Character(object):
     Attributes
     ----------
     name : str
-        first name of the person
+        the character's name
     health : int
         the character's health stat
     strength : int
@@ -600,7 +598,8 @@ def clear_screen():
 def print_menu():
     clear_screen()
     for key in menu_options.keys():
-        print (f'{key}.\t', menu_options[key] )
+        print(f'{key}.\t', menu_options[key])
+
 
 def exit():
     print("Exiting. Bye!")
@@ -617,7 +616,7 @@ reset_text_colour_ansi_code = "\033[0m"
 ansi_code_list = [red_text_ansi_code, reset_text_colour_ansi_code]
 
 # Menu variables
-valid_menu_options = [x for x in range(0,17)]
+valid_menu_options = [x for x in range(0, 17)]
 menu_options = {
     1: 'hello_world()',
     2: 'input_from_user()',
