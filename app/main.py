@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+
+__author__ = “Andrew Browne”
+__email__ = “andrew.browne@malwarelab.io”
+
 import os
 import random
 import sys
