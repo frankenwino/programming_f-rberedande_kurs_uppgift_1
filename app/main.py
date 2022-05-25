@@ -3,6 +3,10 @@
 __author__ = "Andrew Browne"
 __email__ = "andrew.browne@malwarelab.io"
 
+"""
+Programmering T&B Maj -22
+"""
+
 import os
 import random
 import sys
